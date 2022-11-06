@@ -91,7 +91,7 @@ const SignUp = () => {
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input onChange={handlePassword} type="text" name='password' placeholder="password" className="input input-bordered" required />
+                            <input onChange={handlePassword} type="password" name='password' placeholder="password" className="input input-bordered" required />
                             <div>
                                 {
                                     errors?.passwordError && <p className='text-orange-700 font-semibold'><small>{errors.passwordError}</small></p>

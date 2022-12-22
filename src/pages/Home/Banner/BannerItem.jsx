@@ -12,10 +12,10 @@ const BannerItem = ({ slide }) => {
                 <a href={`#slide${next}`} className="btn btn-circle">❯</a>
             </div>
             <div className="absolute flex text-white justify-end transform -translate-y-1/2 left-24 top-1/4">
-                <h1 className='text-6xl'>Affordable <br />Price For Car <br />Servicing</h1>
+                <h1 className='text-xl lg:text-6xl'>Affordable <br />Price For Car <br />Servicing</h1>
             </div>
-            <div className="absolute flex text-white w-2/5 justify-end transform -translate-y-1/2 left-24 top-1/2">
-                <p className='text-xl'>There are many variations of passages of  available, but the majority have suffered alteration in some form</p>
+            <div className="absolute flex text-white lg:w-2/5 justify-end transform -translate-y-1/2 left-5 lg:left-24 top-1/2">
+                <p className='lg:text-xl'>There are many variations of passages of  available, but the majority have suffered alteration in some form</p>
             </div>
             <div className="absolute flex text-white justify-end transform -translate-y-1/2 left-24 top-3/4">
                 <button className="btn btn-outline btn-warning mr-5">Discover More</button>

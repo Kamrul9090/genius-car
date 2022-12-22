@@ -1,11 +1,13 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import img from '../../src/assets/images/login/login.svg'
-import { FaFacebook, FaGoogle, FaLinkedin } from "react-icons/fa";
+import { setAuthToken } from '../api/Auth';
 import { AuthContext } from '../contexts/AuthProvider';
 const SignUp = () => {
     const { user, createUser } = useContext(AuthContext);
-
+    const location = useLocation()
+    const navigate = useNavigate();
+    const from = location.state?.from?.pathname || '/';
     const [currentUser, setCurrentUser] = useState({
         email: '',
         password: '',
@@ -22,10 +24,11 @@ const SignUp = () => {
         createUser(currentUser.email, currentUser.password)
             .then(result => {
                 const user = result.user;
-                console.log(user);
+                setAuthToken(user);
                 e.target.email.value = '';
                 e.target.password.value = '';
                 e.target.confirm.value = '';
+                navigate(from, { replace: true })
             })
             .catch(err => {
                 console.error(err);
@@ -102,7 +105,7 @@ const SignUp = () => {
                             <label className="label">
                                 <span className="label-text">Confirm Password</span>
                             </label>
-                            <input onChange={handleConfirm} type="text" name='confirm' placeholder="confirm password" className="input input-bordered" required />
+                            <input onChange={handleConfirm} type="password" name='confirm' placeholder="confirm password" className="input input-bordered" required />
                             <div>
                                 {
                                     errors?.confirmError && <p className='text-orange-700 font-semibold'><small>{errors.confirmError}</small></p>
@@ -113,16 +116,6 @@ const SignUp = () => {
                             <input className="btn border-none bg-orange-700" type="submit" value="SignUp" />
                         </div>
                     </form>
-                    <div className='text-center'>
-                        <h3 className='text-xl font-bold'>Or Sign Up with</h3>
-                        <div className='flex justify-center space-x-4 my-7'>
-                            <Link to='/'><FaFacebook className='w-12 h-12'></FaFacebook></Link>
-                            <Link to='/'><FaGoogle className='w-12 h-12'></FaGoogle></Link>
-                            <Link to='/'>
-                                <FaLinkedin className='w-12 h-12'></FaLinkedin>
-                            </Link>
-                        </div>
-                    </div>
                     <div className='text-center'>
                         <p className='font-bold'>Already have an account?<Link className='text-orange-700 ml-2' to="/login">Login</Link></p>
                     </div>

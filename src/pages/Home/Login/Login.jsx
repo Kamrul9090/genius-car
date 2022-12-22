@@ -3,6 +3,7 @@ import toast from 'react-hot-toast';
 import { json, Link, useLocation, useNavigate } from 'react-router-dom';
 import img from '../../../assets/images/login/login.svg'
 import { AuthContext } from '../../../contexts/AuthProvider';
+import SocialLogin from '../../../shared/SocialLogin/SocialLogin';
 const Login = () => {
     const { login } = useContext(AuthContext);
     const location = useLocation()
@@ -19,7 +20,7 @@ const Login = () => {
                 const currentUser = {
                     email: user.email
                 }
-                fetch(`http://localhost:5000/jwt`, {
+                fetch(`https://genius-car-server-liard-two.vercel.app/jwt`, {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -34,7 +35,6 @@ const Login = () => {
                         e.target.reset()
                         navigate(from, { replace: true })
                     })
-
             })
             .catch(e => console.error(e))
     }
@@ -66,6 +66,7 @@ const Login = () => {
                             <input className="btn border-none bg-orange-700" type="submit" value="Login" />
                         </div>
                     </form>
+                    <SocialLogin></SocialLogin>
                     <div className='text-center'>
                         <p className='font-bold'>New in Genius Car?<Link className='text-orange-700 ml-2' to="/signup">SignUp</Link></p>
                     </div>

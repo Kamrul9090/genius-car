@@ -47,7 +47,7 @@ const OurProducts = () => {
         },
     ]
     return (
-        <div>
+        <div className='text-center mb-24'>
             <div className='my-10 w-1/2 mx-auto text-center space-y-4'>
                 <h1 className='text-xl text-red-600'>Popular Products</h1>
                 <h1 className='text-3xl'>Browse Our Products</h1>
@@ -59,6 +59,7 @@ const OurProducts = () => {
                     services.map(service => <Product key={service.id} service={service}></Product>)
                 }
             </div>
+            <button className='btn btn-outline text-red-500 mt-10'>More Products</button>
         </div>
     );
 };
